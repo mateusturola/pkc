@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #150a2e;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis handles smoothing */
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background-color: var(--bg);
+  color: #e9e2fb;
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@layer components {
+  .container-px {
+    @apply px-5 sm:px-8 lg:px-12;
+  }
+
+  .heading-stroke {
+    -webkit-text-stroke: 2px #072e3c;
+    paint-order: stroke fill;
+  }
+
+  /* Fun "sticker" outline used on display headings */
+  .text-shadow-pop {
+    text-shadow:
+      3px 3px 0 rgba(7, 46, 60, 0.12),
+      0 6px 22px rgba(7, 46, 60, 0.18);
+  }
+
+  .btn-pop {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-full font-display font-semibold transition-transform duration-200 ease-out active:scale-95;
+    box-shadow: 0 6px 0 0 rgba(0, 0, 0, 0.35);
+  }
+  .btn-pop:hover {
+    transform: translateY(-2px);
+  }
+  .btn-pop:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.35);
+  }
+}
+
+/* Decorative dotted grid */
+.bg-dots {
+  background-image: radial-gradient(rgba(183, 155, 255, 0.16) 1.4px, transparent 1.4px);
+  background-size: 22px 22px;
+}
+
+.noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
