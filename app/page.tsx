@@ -7,6 +7,7 @@ import Audience from "@/components/sections/Audience";
 import Speakers from "@/components/sections/Speakers";
 import EventDetails from "@/components/sections/EventDetails";
 import Faq from "@/components/sections/Faq";
+import Follow from "@/components/sections/Follow";
 import Register from "@/components/sections/Register";
 import Footer from "@/components/sections/Footer";
 
@@ -22,6 +23,7 @@ export default function Home() {
         <Speakers />
         <EventDetails />
         <Faq />
+        <Follow />
         <Register />
       </main>
       <Footer />

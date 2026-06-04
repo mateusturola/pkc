@@ -1,5 +1,6 @@
 import Logo from "@/components/ui/Logo";
-import { EVENT, NAV_LINKS } from "@/lib/data";
+import Icon from "@/components/ui/Icon";
+import { EVENT, INSTAGRAM, NAV_LINKS } from "@/lib/data";
 
 export default function Footer() {
   return (
@@ -17,6 +18,25 @@ export default function Footer() {
             <p className="mt-4 font-body text-sm font-bold text-lav/50">
               {EVENT.dateLabel} · {EVENT.venue} · {EVENT.city}
             </p>
+            <div className="mt-6 flex items-center gap-3">
+              <a
+                href={INSTAGRAM.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Instagram ${INSTAGRAM.handle}`}
+                className="grid h-11 w-11 place-items-center rounded-2xl border border-white/15 text-lav/80 transition-colors hover:border-purple-light hover:text-purple-light"
+              >
+                <Icon name="instagram" className="h-5 w-5" />
+              </a>
+              <a
+                href={INSTAGRAM.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-body text-sm font-bold text-lav/70 transition-colors hover:text-purple-light"
+              >
+                {INSTAGRAM.handle}
+              </a>
+            </div>
           </div>
 
           <nav className="grid grid-cols-2 gap-x-12 gap-y-3">

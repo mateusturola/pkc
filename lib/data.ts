@@ -1,5 +1,25 @@
 export const SITE_URL = "https://pazkidsconference.com";
 
+export const INSTAGRAM = {
+  handle: "@pazkidsoficial",
+  url: "https://www.instagram.com/pazkidsoficial/",
+};
+
+// Widget de inscrição do e-inscrição. O botão (classe ei-button + data-*) só
+// funciona quando o SCRIPT do widget é carregado — copie-o no painel em
+// Integrações → Fluxo de Pagamento → Conectar ("primeiro código") e cole a URL
+// em widgetScriptSrc. Sem o script, o botão não abre o checkout.
+export const EINSCRICAO = {
+  eventId: "131583",
+  url: "https://checkout.e-inscricao.com",
+  apiUrl: "https://www.e-inscricao.com",
+  msApiUrl: "https://ei-pay.e-inscricao.com",
+  receiptUrl: "https://recibo.e-inscricao.tech",
+  participantsUrl: "https://participants.e-inscricao.com",
+  widgetScriptSrc:
+    "https://cdn.jsdelivr.net/npm/@e-inscricao/widget@0.0.24/widget.js",
+};
+
 export const EVENT = {
   name: "PAZ Kids Conference 27",
   dateLabel: "29 de maio de 2027",
@@ -10,11 +30,14 @@ export const EVENT = {
   city: "Barueri · SP · 06401-050",
   promoLotPrice: "R$ 99,90",
   promoLotDeadline: "20 de junho",
+  // Fim do lote promocional (fuso de Brasília). A partir daí, o card de R$ 120
+  // passa a ser o ativo automaticamente.
+  promoDeadlineISO: "2026-06-20T23:59:59-03:00",
+  fullPrice: "R$ 120,00",
+  fullPriceStart: "21 de junho",
   // CTAs do topo (Navbar/Hero/Footer) rolam até a seção de inscrição, onde o
-  // visitante vê preço e detalhes antes de ir pro checkout.
+  // visitante vê preço e detalhes antes de abrir o checkout pelo widget.
   registerUrl: "#inscricao",
-  // Checkout do e-inscrição (evento 131583) — botão final da seção Inscrições.
-  checkoutUrl: "https://checkout.e-inscricao.com/131583",
 };
 
 export type Speaker = {
@@ -109,7 +132,7 @@ export const FAQS: Faq[] = [
   },
   {
     q: "Quanto custa a inscrição?",
-    a: "O lote promocional sai por R$ 99,90 e fica disponível até 20 de junho. As vagas são limitadas, então quanto antes melhor.",
+    a: "O lote promocional sai por R$ 99,90 e fica disponível até 20 de junho. Depois dessa data, o valor passa para R$ 120,00. As vagas são limitadas, então quanto antes melhor.",
   },
   {
     q: "O que está incluído na inscrição?",
