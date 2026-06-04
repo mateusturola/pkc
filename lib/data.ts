@@ -10,9 +10,11 @@ export const EVENT = {
   city: "Barueri · SP · 06401-050",
   promoLotPrice: "R$ 99,90",
   promoLotDeadline: "20 de junho",
-  // Replace with the real e-inscrição link when available — inscrições já abrem
-  // com o site no ar.
+  // CTAs do topo (Navbar/Hero/Footer) rolam até a seção de inscrição, onde o
+  // visitante vê preço e detalhes antes de ir pro checkout.
   registerUrl: "#inscricao",
+  // Checkout do e-inscrição (evento 131583) — botão final da seção Inscrições.
+  checkoutUrl: "https://checkout.e-inscricao.com/131583",
 };
 
 export type Speaker = {
