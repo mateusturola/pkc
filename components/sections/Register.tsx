@@ -1,20 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Script from "next/script";
 import Reveal from "@/components/ui/Reveal";
 import Logo from "@/components/ui/Logo";
+import EinscricaoButton from "@/components/ui/EinscricaoButton";
+import usePromoActive from "@/hooks/usePromoActive";
 import { EINSCRICAO, EVENT } from "@/lib/data";
 
 export default function Register() {
   // Até 20/06 o lote promocional fica em destaque e o de R$ 120 esmaecido;
-  // a partir de 21/06 inverte sozinho. Começa em "promo ativo" (realidade
-  // atual) pra não dar mismatch de hidratação e corrige no cliente se a data
-  // já tiver passado.
-  const [promoActive, setPromoActive] = useState(true);
-  useEffect(() => {
-    setPromoActive(Date.now() <= new Date(EVENT.promoDeadlineISO).getTime());
-  }, []);
+  // a partir de 21/06 inverte sozinho.
+  const promoActive = usePromoActive();
 
   return (
     <section
@@ -115,18 +111,9 @@ export default function Register() {
 
         <Reveal delay={0.18}>
           <div className="mt-8">
-            <button
-              type="button"
-              className="ei-button btn-pop bg-cream-light px-8 py-4 text-lg text-purple-dark"
-              data-einscricao-event={EINSCRICAO.eventId}
-              data-einscricao-url={EINSCRICAO.url}
-              data-einscricao-api-url={EINSCRICAO.apiUrl}
-              data-einscricao-ms-api-url={EINSCRICAO.msApiUrl}
-              data-einscricao-receipt-url={EINSCRICAO.receiptUrl}
-              data-einscricao-api-participants-url={EINSCRICAO.participantsUrl}
-            >
+            <EinscricaoButton className="btn-pop bg-cream-light px-8 py-4 text-lg text-purple-dark">
               Inscreva-se já
-            </button>
+            </EinscricaoButton>
             <p className="mx-auto mt-4 max-w-md font-body text-sm font-semibold text-cream-light/80">
               {promoActive
                 ? `Garanta o lote promocional — após ${EVENT.promoLotDeadline} passa para ${EVENT.fullPrice}.`

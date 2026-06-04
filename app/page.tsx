@@ -1,5 +1,6 @@
 import SmoothScroll from "@/components/SmoothScroll";
 import Navbar from "@/components/Navbar";
+import StickyCTA from "@/components/StickyCTA";
 import ScrollShapes from "@/components/ui/ScrollShapes";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
@@ -27,6 +28,7 @@ export default function Home() {
         <Register />
       </main>
       <Footer />
+      <StickyCTA />
     </SmoothScroll>
   );
 }
