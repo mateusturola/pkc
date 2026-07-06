@@ -4,14 +4,14 @@ type Props = {
   priority?: boolean;
 };
 
-/** Official PazKids Conference 27 logo (trimmed, transparent PNG in /public). */
+/** Logo oficial PAZ Kids Conference 2027 (wordmark gradiente, PNG em /public). */
 export default function Logo({ className, priority }: Props) {
   return (
     <img
-      src="/logo.png"
-      alt="PAZ Kids Conference 27 · Barueri"
-      width={1175}
-      height={439}
+      src="/logo.webp"
+      alt="PAZ Kids Conference 2027 · Barueri"
+      width={1332}
+      height={549}
       decoding="async"
       loading={priority ? "eager" : "lazy"}
       className={className}

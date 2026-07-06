@@ -1,18 +1,14 @@
 import type { Metadata, Viewport } from "next";
-import { Fredoka, Nunito } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import { EVENT, SITE_URL } from "@/lib/data";
 import "./globals.css";
 
-const display = Fredoka({
+// Montserrat em títulos e corpo — mais limpa e profissional. A "voz" marcante
+// da marca (Monument Extended) fica reservada à logo. Os pesos altos (800/900)
+// dão o impacto dos títulos sem o peso "blocado" da Monument em tudo.
+const body = Montserrat({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-display",
-  display: "swap",
-});
-
-const body = Nunito({
-  subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
+  weight: ["400", "500", "600", "700", "800", "900"],
   variable: "--font-body",
   display: "swap",
 });
@@ -23,12 +19,12 @@ const OG_DESCRIPTION =
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "PAZ Kids Conference 27 | Barueri",
-    template: "%s | PAZ Kids Conference 27",
+    default: "PAZ Kids Conference 2027 | Barueri",
+    template: "%s | PAZ Kids Conference 2027",
   },
   description:
     "A conferência para quem tem um coração voltado para a próxima geração. 29 de maio de 2027, Paz Church Barueri. Voluntários, pais, educadores e líderes do ministério infantil.",
-  applicationName: "PAZ Kids Conference 27",
+  applicationName: "PAZ Kids Conference 2027",
   keywords: [
     "PazKids",
     "Conferência infantil",
@@ -50,16 +46,16 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "PAZ Kids Conference 27",
+    title: "PAZ Kids Conference 2027",
     description: OG_DESCRIPTION,
     url: SITE_URL,
-    siteName: "PAZ Kids Conference 27",
+    siteName: "PAZ Kids Conference 2027",
     locale: "pt_BR",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "PAZ Kids Conference 27",
+    title: "PAZ Kids Conference 2027",
     description: OG_DESCRIPTION,
   },
 };
@@ -92,8 +88,8 @@ const EVENT_JSONLD = {
   },
   offers: {
     "@type": "Offer",
-    name: "Lote promocional",
-    price: "99.90",
+    name: "1º lote",
+    price: "130.00",
     priceCurrency: "BRL",
     availability: "https://schema.org/InStock",
     url: SITE_URL,
@@ -106,7 +102,7 @@ const EVENT_JSONLD = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#150A2E",
+  themeColor: "#FBFAFF",
   width: "device-width",
   initialScale: 1,
 };
@@ -117,7 +113,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className={`${display.variable} ${body.variable}`}>
+    <html lang="pt-BR" className={body.variable}>
       <body>
         <script
           type="application/ld+json"

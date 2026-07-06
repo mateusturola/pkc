@@ -16,21 +16,24 @@ export type FloatingShape = {
   blur?: boolean; // soften for depth
 };
 
+// Nova identidade PKC 2027 — clara e iridescente. Tons de azul/magenta/lavanda.
 const C = {
-  purple: "#9B72F2",
-  purpleLight: "#B79BFF",
-  sky: "#2BA9E0",
-  coral: "#FF6B5C",
-  sun: "#FFC83D",
-  mint: "#3FCB8E",
-  grape: "#8B6CE0",
+  purple: "#CB6CE6", // magenta
+  purpleLight: "#E2A6F1", // magenta light
+  sky: "#043C86", // azul primário
+  coral: "#A445C2", // magenta dark
+  sun: "#3E74C9", // azul light
+  mint: "#3E74C9", // azul light
+  grape: "#A445C2", // magenta dark
 } as const;
 
+// Preenchimento claro e translúcido: brilho branco no topo derretendo numa
+// versão suave da cor, para as formas ficarem etéreas sobre o fundo claro.
 function gloss(color: string) {
-  return `radial-gradient(circle at 32% 26%, rgba(255,255,255,0.6), ${color} 46%, color-mix(in srgb, ${color} 60%, #000) 100%)`;
+  return `radial-gradient(circle at 32% 26%, rgba(255,255,255,0.85), color-mix(in srgb, ${color} 42%, #FBFAFF) 58%, color-mix(in srgb, ${color} 62%, #F2EEFC) 100%)`;
 }
 
-const SHADOW = "0 22px 45px -16px rgba(0,0,0,0.55)";
+const SHADOW = "0 18px 40px -20px rgba(4,60,134,0.28)";
 
 // Full literal class names so Tailwind's JIT scanner emits them.
 const ANIM: Record<NonNullable<FloatingShape["anim"]>, string> = {
@@ -41,7 +44,7 @@ const ANIM: Record<NonNullable<FloatingShape["anim"]>, string> = {
 
 function styleFor(s: FloatingShape): CSSProperties {
   const base: CSSProperties = {
-    opacity: s.opacity ?? 0.85,
+    opacity: s.opacity ?? 0.5,
     animationDelay: s.delay ? `${s.delay}s` : undefined,
   };
   switch (s.kind) {
@@ -66,8 +69,8 @@ function styleFor(s: FloatingShape): CSSProperties {
         ...base,
         background: "transparent",
         borderRadius: "9999px",
-        borderColor: s.color,
-        boxShadow: `inset 0 4px 9px rgba(255,255,255,0.22), ${SHADOW}`,
+        borderColor: `color-mix(in srgb, ${s.color} 55%, #FBFAFF)`,
+        boxShadow: `inset 0 4px 9px rgba(255,255,255,0.5), ${SHADOW}`,
       };
   }
 }

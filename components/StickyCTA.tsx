@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from "react";
 import EinscricaoButton from "@/components/ui/EinscricaoButton";
-import usePromoActive from "@/hooks/usePromoActive";
-import { EVENT } from "@/lib/data";
+import useCurrentLot from "@/hooks/useCurrentLot";
 
 /**
  * Barra fixa de inscrição. Fica sempre no DOM (só desliza pra fora da tela
@@ -12,7 +11,7 @@ import { EVENT } from "@/lib/data";
  * de Inscrições, evitando CTA duplicado.
  */
 export default function StickyCTA() {
-  const promoActive = usePromoActive();
+  const { lot } = useCurrentLot();
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -34,8 +33,8 @@ export default function StickyCTA() {
     };
   }, []);
 
-  const price = promoActive ? EVENT.promoLotPrice : EVENT.fullPrice;
-  const label = promoActive ? "Lote promocional" : "1º lote";
+  const price = lot.price;
+  const label = lot.name;
 
   return (
     <div
@@ -45,19 +44,19 @@ export default function StickyCTA() {
       }`}
     >
       <div className="container-px mx-auto max-w-3xl pb-3">
-        <div className="flex items-center justify-between gap-4 rounded-3xl border border-white/10 bg-ink/90 px-5 py-3 shadow-[0_18px_45px_rgba(0,0,0,0.5)] backdrop-blur-md sm:px-6">
+        <div className="flex items-center justify-between gap-4 rounded-3xl border border-paper-tint bg-white/90 px-5 py-3 shadow-[0_18px_45px_rgba(4,60,134,0.18)] backdrop-blur-md sm:px-6">
           <div className="leading-tight">
-            <p className="font-body text-[10px] font-bold uppercase tracking-[0.18em] text-lav/55 sm:text-[11px]">
+            <p className="font-body text-[10px] font-bold uppercase tracking-[0.18em] text-blue sm:text-[11px]">
               {label}
             </p>
-            <p className="font-display text-lg font-bold text-lav sm:text-xl">
+            <p className="font-display text-lg font-bold text-ink sm:text-xl">
               {price}{" "}
-              <span className="font-body text-xs font-semibold text-lav/50">
+              <span className="font-body text-xs font-semibold text-ink-mute">
                 por pessoa
               </span>
             </p>
           </div>
-          <EinscricaoButton className="btn-pop shrink-0 bg-purple px-6 py-3 text-base text-white">
+          <EinscricaoButton className="btn-pop shrink-0 bg-blue px-6 py-3 text-base text-white">
             Inscreva-se já
           </EinscricaoButton>
         </div>

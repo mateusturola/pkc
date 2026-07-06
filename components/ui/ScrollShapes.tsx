@@ -8,11 +8,13 @@ import { useEffect, useState } from "react";
 // background) and are hidden on small screens where the margins are too thin
 // to clear the centered content.
 
+// Nova identidade PKC 2027 — clara e iridescente: preenchimento translúcido
+// que derrete num tom suave da cor sobre o fundo claro.
 function gloss(color: string) {
-  return `radial-gradient(circle at 32% 26%, rgba(255,255,255,0.6), ${color} 46%, color-mix(in srgb, ${color} 60%, #000) 100%)`;
+  return `radial-gradient(circle at 32% 26%, rgba(255,255,255,0.85), color-mix(in srgb, ${color} 42%, #FBFAFF) 58%, color-mix(in srgb, ${color} 62%, #F2EEFC) 100%)`;
 }
 
-const SHADOW = "0 22px 45px -16px rgba(0,0,0,0.55)";
+const SHADOW = "0 18px 40px -20px rgba(4,60,134,0.28)";
 
 export default function ScrollShapes() {
   const [p, setP] = useState(0);
@@ -46,9 +48,9 @@ export default function ScrollShapes() {
         style={{
           top: `${8 + p * 80}%`,
           right: `${4 + sway(0)}%`,
-          background: gloss("#9B72F2"),
+          background: gloss("#043C86"),
           boxShadow: SHADOW,
-          opacity: 0.78,
+          opacity: 0.42,
         }}
       />
       {/* left edge — glides bottom → top */}
@@ -57,10 +59,10 @@ export default function ScrollShapes() {
         style={{
           top: `${84 - p * 76}%`,
           left: `${4 + sway(2.1)}%`,
-          background: gloss("#3FCB8E"),
+          background: gloss("#CB6CE6"),
           borderRadius: "30%",
           boxShadow: SHADOW,
-          opacity: 0.72,
+          opacity: 0.4,
         }}
       />
       {/* right edge lower — ring, mid travel, slower phase */}
@@ -69,9 +71,9 @@ export default function ScrollShapes() {
         style={{
           top: `${28 + p * 44}%`,
           right: `${9 + sway(4.2)}%`,
-          borderColor: "#FFC83D",
-          boxShadow: `inset 0 4px 9px rgba(255,255,255,0.22), ${SHADOW}`,
-          opacity: 0.66,
+          borderColor: "color-mix(in srgb, #3E74C9 55%, #FBFAFF)",
+          boxShadow: `inset 0 4px 9px rgba(255,255,255,0.5), ${SHADOW}`,
+          opacity: 0.38,
         }}
       />
     </div>

@@ -37,7 +37,7 @@ export default function Navbar() {
       <div
         className={`mx-auto mt-3 flex max-w-6xl items-center justify-between gap-4 rounded-full border px-4 py-2.5 transition-all duration-300 sm:mt-4 sm:px-6 ${
           scrolled
-            ? "border-white/10 bg-ink-light/80 shadow-lg shadow-black/30 backdrop-blur-md"
+            ? "border-blue/10 bg-white/80 shadow-lg shadow-blue/10 backdrop-blur-md"
             : "border-transparent bg-transparent"
         }`}
       >
@@ -58,7 +58,7 @@ export default function Navbar() {
             <a
               key={l.href}
               href={l.href}
-              className="font-body text-sm font-bold text-lav/80 transition-colors hover:text-purple-light"
+              className="font-body text-sm font-bold text-ink-soft transition-colors hover:text-blue"
             >
               {l.label}
             </a>
@@ -68,7 +68,7 @@ export default function Navbar() {
         <div className="flex items-center gap-2">
           <a
             href={EVENT.registerUrl}
-            className="btn-pop hidden bg-purple px-5 py-2.5 text-sm text-white hover:bg-purple-dark sm:inline-flex"
+            className="btn-pop hidden bg-blue px-5 py-2.5 text-sm text-white hover:bg-blue-dark sm:inline-flex"
           >
             Inscreva-se
           </a>
@@ -77,7 +77,7 @@ export default function Navbar() {
             aria-label="Abrir menu"
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="grid h-10 w-10 place-items-center rounded-full bg-white/10 text-lav md:hidden"
+            className="grid h-10 w-10 place-items-center rounded-full bg-blue/10 text-blue md:hidden"
           >
             <span className="relative block h-4 w-5">
               <span
@@ -101,7 +101,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="mx-4 mt-2 rounded-3xl border border-white/10 bg-ink-light/95 p-4 shadow-xl backdrop-blur-md md:hidden"
+            className="mx-4 mt-2 rounded-3xl border border-blue/10 bg-white/95 p-4 shadow-xl shadow-blue/10 backdrop-blur-md md:hidden"
           >
             <nav className="flex flex-col">
               {NAV_LINKS.map((l) => (
@@ -109,7 +109,7 @@ export default function Navbar() {
                   key={l.href}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="rounded-2xl px-4 py-3 font-display text-lg font-semibold text-lav hover:bg-white/5"
+                  className="rounded-2xl px-4 py-3 font-display text-lg font-semibold text-ink hover:bg-paper-soft"
                 >
                   {l.label}
                 </a>
@@ -117,7 +117,7 @@ export default function Navbar() {
               <a
                 href={EVENT.registerUrl}
                 onClick={() => setOpen(false)}
-                className="btn-pop mt-2 bg-purple px-5 py-3 text-white"
+                className="btn-pop mt-2 bg-blue px-5 py-3 text-white"
               >
                 Inscreva-se
               </a>

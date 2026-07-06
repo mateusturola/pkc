@@ -1,17 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Reveal from "@/components/ui/Reveal";
+import Icon from "@/components/ui/Icon";
 import FloatingShapes, { SPEAKERS_SHAPES } from "@/components/ui/FloatingShapes";
 import { SPEAKERS, type Speaker } from "@/lib/data";
-
-const ACCENT: Record<string, string> = {
-  purple: "from-purple to-purple-dark",
-  sky: "from-sky to-sky-dark",
-  coral: "from-coral to-[#e8503f]",
-  sun: "from-sun to-[#f0a800]",
-  mint: "from-mint to-[#2aa873]",
-};
 
 function initials(name: string) {
   return name
@@ -28,9 +21,7 @@ function SpeakerPhoto({ speaker }: { speaker: Speaker }) {
   const showPhoto = speaker.photo && !errored;
 
   return (
-    <div
-      className={`h-44 w-36 overflow-hidden rounded-3xl border-4 border-white bg-gradient-to-br shadow-[0_18px_40px_rgba(0,0,0,0.45)] ${ACCENT[speaker.accent]}`}
-    >
+    <div className="aspect-[4/5] w-full overflow-hidden bg-paper-soft">
       {showPhoto ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
@@ -42,9 +33,8 @@ function SpeakerPhoto({ speaker }: { speaker: Speaker }) {
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
       ) : (
-        <div className="relative flex h-full w-full items-center justify-center">
-          <div aria-hidden className="absolute inset-0 bg-dots opacity-20" />
-          <span className="font-display text-5xl font-bold text-white/90">
+        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-blue to-magenta">
+          <span className="font-display text-5xl font-bold text-white">
             {initials(speaker.name)}
           </span>
         </div>
@@ -54,49 +44,74 @@ function SpeakerPhoto({ speaker }: { speaker: Speaker }) {
 }
 
 export default function Speakers() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const scrollByCards = (dir: number) => {
+    trackRef.current?.scrollBy({ left: dir * 300, behavior: "smooth" });
+  };
+
   return (
-    <section id="palestrantes" className="relative isolate overflow-hidden pt-24 pb-12 sm:pt-32 sm:pb-16">
+    <section
+      id="palestrantes"
+      className="relative isolate overflow-hidden pt-24 pb-12 sm:pt-32 sm:pb-16"
+    >
       <FloatingShapes items={SPEAKERS_SHAPES} />
       <div className="container-px mx-auto max-w-6xl">
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <div className="max-w-2xl">
             <Reveal>
-              <span className="font-display text-sm font-semibold uppercase tracking-[0.3em] text-purple-light">
+              <span className="font-display text-sm font-semibold uppercase tracking-[0.3em] text-blue">
                 Palestrantes
               </span>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="mt-4 font-display text-[clamp(2.2rem,6vw,4.5rem)] font-bold leading-[0.95] text-lav">
-                Quem vai{" "}
-                <span className="text-sun">inspirar</span> você.
+              <h2 className="mt-4 font-display text-[clamp(1.9rem,4.5vw,3.25rem)] font-bold leading-[0.95] text-ink">
+                Quem vai <span className="text-gradient">inspirar</span> você.
               </h2>
             </Reveal>
           </div>
           <Reveal delay={0.1}>
-            <p className="font-body font-bold text-lav-dim">
-              E ainda tem mais nomes a caminho.
-            </p>
+            <div className="flex gap-3">
+              <button
+                type="button"
+                onClick={() => scrollByCards(-1)}
+                aria-label="Palestrante anterior"
+                className="grid h-11 w-11 place-items-center rounded-full border border-paper-tint bg-white text-blue shadow-[0_10px_26px_-12px_rgba(4,60,134,0.4)] transition-colors hover:bg-paper-soft"
+              >
+                <Icon name="arrow-right" className="h-5 w-5 rotate-180" />
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollByCards(1)}
+                aria-label="Próximo palestrante"
+                className="grid h-11 w-11 place-items-center rounded-full border border-paper-tint bg-white text-blue shadow-[0_10px_26px_-12px_rgba(4,60,134,0.4)] transition-colors hover:bg-paper-soft"
+              >
+                <Icon name="arrow-right" className="h-5 w-5" />
+              </button>
+            </div>
           </Reveal>
         </div>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div
+          ref={trackRef}
+          className="mt-14 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
           {SPEAKERS.map((s, i) => (
-            <Reveal key={s.name} delay={i * 0.08}>
-              <article className="group relative flex h-full flex-col justify-end pt-16">
-                <div
-                  className={`relative rounded-4xl bg-gradient-to-br px-5 pb-7 pt-32 text-center transition-transform duration-300 group-hover:-translate-y-2 ${ACCENT[s.accent]}`}
-                >
-                  <div
-                    aria-hidden
-                    className="pointer-events-none absolute inset-0 rounded-4xl bg-dots opacity-15"
-                  />
-                  <div className="absolute inset-x-0 -top-14 flex justify-center">
-                    <SpeakerPhoto speaker={s} />
-                  </div>
-                  <h3 className="relative font-display text-2xl font-bold leading-tight text-white">
+            <Reveal
+              key={s.name}
+              delay={i * 0.08}
+              className="w-[230px] shrink-0 snap-start sm:w-[250px]"
+            >
+              <article className="group h-full overflow-hidden rounded-4xl border border-paper-tint bg-white shadow-[0_18px_50px_-24px_rgba(4,60,134,0.25)] transition-transform duration-300 hover:-translate-y-2">
+                <SpeakerPhoto speaker={s} />
+                <div className="px-5 py-5 text-center">
+                  <h3 className="font-display text-lg font-bold leading-tight text-ink">
                     {s.name}
                   </h3>
-                  <p className="relative mt-1 font-body text-xs font-bold uppercase tracking-[0.2em] text-white/70">
+                  <p
+                    className={`mt-1 font-body text-xs font-bold uppercase tracking-[0.2em] ${
+                      i % 2 === 0 ? "text-blue" : "text-magenta"
+                    }`}
+                  >
                     {s.role}
                   </p>
                 </div>

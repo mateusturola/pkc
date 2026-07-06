@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { EVENT } from "@/lib/data";
 
 export const alt =
-  "PAZ Kids Conference 27 — 29 de maio de 2027, Paz Church Barueri";
+  "PAZ Kids Conference 2027 — 29 de maio de 2027, Paz Church Barueri";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -21,22 +21,33 @@ export default function OpengraphImage() {
           justifyContent: "center",
           padding: "90px",
           backgroundImage:
-            "linear-gradient(135deg, #1b0e3a 0%, #2a1356 55%, #3a1d6e 100%)",
-          color: "#ffffff",
+            "linear-gradient(135deg, #EEF0FF 0%, #E3E6FF 52%, #EFE0FB 100%)",
+          color: "#0F1211",
           fontFamily: "sans-serif",
           position: "relative",
         }}
       >
-        {/* brilho decorativo no canto */}
+        {/* brilhos iridescentes nos cantos */}
         <div
           style={{
             position: "absolute",
-            top: "-160px",
-            right: "-120px",
+            top: "-170px",
+            right: "-130px",
+            width: "440px",
+            height: "440px",
+            borderRadius: "9999px",
+            background: "rgba(203,108,230,0.22)",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            bottom: "-180px",
+            left: "-140px",
             width: "420px",
             height: "420px",
             borderRadius: "9999px",
-            background: "rgba(255,200,61,0.28)",
+            background: "rgba(62,116,201,0.20)",
           }}
         />
         {/* badge PK */}
@@ -48,8 +59,8 @@ export default function OpengraphImage() {
             width: "150px",
             height: "150px",
             borderRadius: "36px",
-            backgroundColor: "#2BA9E0",
-            boxShadow: "0 24px 50px rgba(0,0,0,0.45)",
+            backgroundImage: "linear-gradient(135deg, #043C86 0%, #CB6CE6 100%)",
+            boxShadow: "0 24px 50px rgba(4,60,134,0.28)",
           }}
         >
           <div
@@ -71,11 +82,11 @@ export default function OpengraphImage() {
             marginTop: "44px",
           }}
         >
-          <div style={{ display: "flex", fontSize: "84px", fontWeight: 800, lineHeight: 1.05 }}>
+          <div style={{ display: "flex", fontSize: "84px", fontWeight: 800, lineHeight: 1.05, color: "#043C86" }}>
             PAZ Kids
           </div>
-          <div style={{ display: "flex", fontSize: "84px", fontWeight: 800, lineHeight: 1.05 }}>
-            Conference 27
+          <div style={{ display: "flex", fontSize: "84px", fontWeight: 800, lineHeight: 1.05, color: "#0F1211" }}>
+            Conference 2027
           </div>
         </div>
 
@@ -84,7 +95,7 @@ export default function OpengraphImage() {
             display: "flex",
             fontSize: "38px",
             fontWeight: 600,
-            color: "#E9E2FB",
+            color: "#3F4348",
             marginTop: "30px",
           }}
         >
@@ -99,13 +110,13 @@ export default function OpengraphImage() {
             marginTop: "40px",
             padding: "16px 32px",
             borderRadius: "9999px",
-            backgroundColor: "#FFC83D",
-            color: "#1b0e3a",
+            backgroundColor: "#043C86",
+            color: "#ffffff",
             fontSize: "32px",
             fontWeight: 800,
           }}
         >
-          Lote promocional · {EVENT.promoLotPrice}
+          Inscrições abertas · vagas limitadas
         </div>
       </div>
     ),

@@ -10,18 +10,18 @@ export default function Faq() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="relative isolate overflow-hidden py-24 sm:py-32">
+    <section id="faq" className="relative isolate overflow-hidden bg-paper-soft py-24 sm:py-32">
       <FloatingShapes items={AUDIENCE_SHAPES} />
       <div className="container-px mx-auto max-w-3xl">
         <div className="text-center">
           <Reveal>
-            <span className="font-display text-sm font-semibold uppercase tracking-[0.3em] text-purple-light">
+            <span className="font-display text-sm font-semibold uppercase tracking-[0.3em] text-blue">
               Dúvidas
             </span>
           </Reveal>
           <Reveal delay={0.05}>
-            <h2 className="mt-4 font-display text-[clamp(2.2rem,6vw,4rem)] font-bold leading-[0.95] text-lav">
-              Perguntas <span className="text-sun">frequentes</span>.
+            <h2 className="mt-4 font-display text-[clamp(1.9rem,4.5vw,3rem)] font-bold leading-[0.95] text-ink">
+              Perguntas <span className="text-gradient">frequentes</span>.
             </h2>
           </Reveal>
         </div>
@@ -32,10 +32,10 @@ export default function Faq() {
             return (
               <Reveal key={item.q} delay={i * 0.05}>
                 <div
-                  className={`overflow-hidden rounded-3xl border-2 transition-colors duration-300 ${
+                  className={`overflow-hidden rounded-3xl border bg-white shadow-[0_18px_50px_-24px_rgba(4,60,134,0.20)] transition-colors duration-300 ${
                     isOpen
-                      ? "border-purple/50 bg-white/[0.04]"
-                      : "border-white/10 bg-white/[0.02]"
+                      ? "border-blue/50"
+                      : "border-paper-tint"
                   }`}
                 >
                   <button
@@ -44,14 +44,14 @@ export default function Faq() {
                     onClick={() => setOpen(isOpen ? null : i)}
                     className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
                   >
-                    <span className="font-display text-lg font-bold text-lav sm:text-xl">
+                    <span className="font-display text-lg font-bold text-ink sm:text-xl">
                       {item.q}
                     </span>
                     <span
                       className={`grid h-9 w-9 shrink-0 place-items-center rounded-full transition-all duration-300 ${
                         isOpen
-                          ? "rotate-180 bg-purple text-white"
-                          : "bg-white/10 text-purple-light"
+                          ? "rotate-180 bg-blue text-white"
+                          : "bg-paper-tint text-blue"
                       }`}
                     >
                       <Icon name="chevron-down" className="h-5 w-5" />
@@ -65,7 +65,7 @@ export default function Faq() {
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <p className="px-6 pb-6 font-body font-semibold leading-relaxed text-lav/75">
+                      <p className="px-6 pb-6 font-body font-semibold leading-relaxed text-ink-soft">
                         {item.a}
                       </p>
                     </div>

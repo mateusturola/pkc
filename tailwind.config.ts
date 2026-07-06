@@ -8,47 +8,50 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Dark base — deep purple "ink"
+        // ===== Identidade PKC 2027 — clara e iridescente =====
+        // Superfícies claras (base do site)
+        paper: {
+          DEFAULT: "#FBFAFF", // fundo geral
+          soft: "#F2EEFC", // seção alternada / lavanda claro
+          tint: "#E9E2F8", // cartões / bordas suaves
+        },
+        // Azul primário — #043C86
+        blue: {
+          DEFAULT: "#043C86",
+          light: "#3E74C9",
+          dark: "#022A5F",
+        },
+        // Magenta secundário — #CB6CE6
+        magenta: {
+          DEFAULT: "#CB6CE6",
+          light: "#E2A6F1",
+          dark: "#A445C2",
+        },
+        // Quase-preto para texto — #0F1211
         ink: {
-          DEFAULT: "#150A2E",
-          light: "#1F1240",
-          lighter: "#2A1A55",
+          DEFAULT: "#0F1211",
+          soft: "#3F4348",
+          mute: "#71757B",
         },
-        // Primary accent — purple
-        purple: {
-          DEFAULT: "#9B72F2",
-          light: "#B79BFF",
-          dark: "#6D4BC4",
-        },
-        // Secondary accent from the logo
-        sky: {
-          DEFAULT: "#2BA9E0",
-          light: "#5DC1EC",
-          dark: "#1B86B8",
-        },
-        navy: {
-          DEFAULT: "#0E4A60",
-          light: "#16627E",
-          dark: "#072E3C",
-        },
-        cream: {
-          DEFAULT: "#F6ECD8",
-          light: "#FBF5E9",
-          dark: "#EBDCBF",
-        },
-        // Soft light text on dark
+        // Lavanda auxiliar (bordas, brilhos, texto sobre escuro)
         lav: {
-          DEFAULT: "#E9E2FB",
-          dim: "#B7AED2",
+          DEFAULT: "#EDE8FB",
+          deep: "#D3C7F1",
+          dim: "#9A8FBE",
         },
-        // Playful accents
-        sun: "#FFC83D",
-        coral: "#FF6B5C",
-        mint: "#3FCB8E",
-        grape: "#8B6CE0",
+        // ===== aliases on-brand (compat p/ referências antigas) =====
+        purple: { DEFAULT: "#CB6CE6", light: "#E2A6F1", dark: "#A445C2" },
+        sky: { DEFAULT: "#043C86", light: "#3E74C9", dark: "#022A5F" },
+        navy: { DEFAULT: "#043C86", light: "#3E74C9", dark: "#022A5F" },
+        cream: { DEFAULT: "#FBFAFF", light: "#FFFFFF", dark: "#F2EEFC" },
+        sun: "#CB6CE6",
+        coral: "#CB6CE6",
+        mint: "#3E74C9",
+        grape: "#A445C2",
       },
       fontFamily: {
-        display: ["var(--font-display)", "system-ui", "sans-serif"],
+        // Títulos e corpo em Montserrat (a Monument fica só na logo).
+        display: ["var(--font-body)", "system-ui", "sans-serif"],
         body: ["var(--font-body)", "system-ui", "sans-serif"],
       },
       borderRadius: {

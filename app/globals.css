@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --bg: #150a2e;
+  --bg: #fbfaff;
 }
 
 * {
@@ -33,7 +33,7 @@ html.lenis body {
 
 body {
   background-color: var(--bg);
-  color: #e9e2fb;
+  color: #0f1211;
   font-family: var(--font-body), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -54,34 +54,41 @@ body {
     @apply px-5 sm:px-8 lg:px-12;
   }
 
-  .heading-stroke {
-    -webkit-text-stroke: 2px #072e3c;
-    paint-order: stroke fill;
+  /* Texto com gradiente da marca (azul → magenta) */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(100deg, #043c86 0%, #7b5bd6 52%, #cb6ce6 100%);
   }
 
-  /* Fun "sticker" outline used on display headings */
-  .text-shadow-pop {
-    text-shadow:
-      3px 3px 0 rgba(7, 46, 60, 0.12),
-      0 6px 22px rgba(7, 46, 60, 0.18);
+  /* Fundo iridescente da marca (lavanda → azul → magenta claro) */
+  .brand-iridescent {
+    background-image: linear-gradient(
+      130deg,
+      #eef0ff 0%,
+      #e3e6ff 24%,
+      #d9d3fb 46%,
+      #efe0fb 68%,
+      #f6ecff 100%
+    );
   }
 
   .btn-pop {
-    @apply relative inline-flex items-center justify-center gap-2 rounded-full font-display font-semibold transition-transform duration-200 ease-out active:scale-95;
-    box-shadow: 0 6px 0 0 rgba(0, 0, 0, 0.35);
+    @apply relative inline-flex items-center justify-center gap-2 rounded-full font-body font-bold transition-all duration-200 ease-out active:scale-[0.97];
+    box-shadow: 0 10px 26px -8px rgba(4, 60, 134, 0.4);
   }
   .btn-pop:hover {
     transform: translateY(-2px);
+    box-shadow: 0 16px 32px -8px rgba(4, 60, 134, 0.5);
   }
   .btn-pop:active {
-    transform: translateY(2px);
-    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.35);
+    transform: translateY(0);
+    box-shadow: 0 6px 16px -8px rgba(4, 60, 134, 0.45);
   }
 }
 
-/* Decorative dotted grid */
+/* Grade de pontos decorativa (azul suave) */
 .bg-dots {
-  background-image: radial-gradient(rgba(183, 155, 255, 0.16) 1.4px, transparent 1.4px);
+  background-image: radial-gradient(rgba(4, 60, 134, 0.1) 1.4px, transparent 1.4px);
   background-size: 22px 22px;
 }
 

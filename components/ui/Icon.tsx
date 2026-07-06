@@ -12,7 +12,8 @@ export type IconName =
   | "user-plus"
   | "chevron-down"
   | "arrow-right"
-  | "instagram";
+  | "instagram"
+  | "check";
 
 const PATHS: Record<IconName, React.ReactNode> = {
   hand: (
@@ -86,6 +87,7 @@ const PATHS: Record<IconName, React.ReactNode> = {
       <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
     </>
   ),
+  check: <polyline points="20 6 9 17 4 12" />,
 };
 
 export default function Icon({ name, className }: Props) {

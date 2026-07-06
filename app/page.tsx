@@ -9,6 +9,7 @@ import Speakers from "@/components/sections/Speakers";
 import EventDetails from "@/components/sections/EventDetails";
 import Faq from "@/components/sections/Faq";
 import Follow from "@/components/sections/Follow";
+import Caravans from "@/components/sections/Caravans";
 import Register from "@/components/sections/Register";
 import Footer from "@/components/sections/Footer";
 
@@ -23,9 +24,10 @@ export default function Home() {
         <Audience />
         <Speakers />
         <EventDetails />
+        <Caravans />
+        <Register />
         <Faq />
         <Follow />
-        <Register />
       </main>
       <Footer />
       <StickyCTA />
