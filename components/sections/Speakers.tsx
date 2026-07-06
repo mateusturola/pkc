@@ -1,8 +1,7 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Reveal from "@/components/ui/Reveal";
-import Icon from "@/components/ui/Icon";
 import FloatingShapes, { SPEAKERS_SHAPES } from "@/components/ui/FloatingShapes";
 import { SPEAKERS, type Speaker } from "@/lib/data";
 
@@ -44,11 +43,6 @@ function SpeakerPhoto({ speaker }: { speaker: Speaker }) {
 }
 
 export default function Speakers() {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const scrollByCards = (dir: number) => {
-    trackRef.current?.scrollBy({ left: dir * 300, behavior: "smooth" });
-  };
-
   return (
     <section
       id="palestrantes"
@@ -56,54 +50,30 @@ export default function Speakers() {
     >
       <FloatingShapes items={SPEAKERS_SHAPES} />
       <div className="container-px mx-auto max-w-6xl">
-        <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
-          <div className="max-w-2xl">
-            <Reveal>
-              <span className="font-display text-sm font-semibold uppercase tracking-[0.3em] text-blue">
-                Palestrantes
-              </span>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <h2 className="mt-4 font-display text-[clamp(1.9rem,4.5vw,3.25rem)] font-bold leading-[0.95] text-ink">
-                Quem vai <span className="text-gradient">inspirar</span> você.
-              </h2>
-            </Reveal>
-          </div>
-          <Reveal delay={0.1}>
-            <div className="flex gap-3">
-              <button
-                type="button"
-                onClick={() => scrollByCards(-1)}
-                aria-label="Palestrante anterior"
-                className="grid h-11 w-11 place-items-center rounded-full border border-paper-tint bg-white text-blue shadow-[0_10px_26px_-12px_rgba(4,60,134,0.4)] transition-colors hover:bg-paper-soft"
-              >
-                <Icon name="arrow-right" className="h-5 w-5 rotate-180" />
-              </button>
-              <button
-                type="button"
-                onClick={() => scrollByCards(1)}
-                aria-label="Próximo palestrante"
-                className="grid h-11 w-11 place-items-center rounded-full border border-paper-tint bg-white text-blue shadow-[0_10px_26px_-12px_rgba(4,60,134,0.4)] transition-colors hover:bg-paper-soft"
-              >
-                <Icon name="arrow-right" className="h-5 w-5" />
-              </button>
-            </div>
+        <div className="text-center">
+          <Reveal>
+            <span className="font-display text-sm font-semibold uppercase tracking-[0.3em] text-blue">
+              Palestrantes
+            </span>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h2 className="mt-4 font-display text-[clamp(1.9rem,4.5vw,3.25rem)] font-bold leading-[0.95] text-ink">
+              Quem vai <span className="text-gradient">inspirar</span> você.
+            </h2>
           </Reveal>
         </div>
 
-        <div
-          ref={trackRef}
-          className="mt-14 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        >
+        {/* Grid centralizado: linhas incompletas (ex.: 3+2) ficam no centro */}
+        <div className="mt-14 flex flex-wrap justify-center gap-4 sm:gap-6">
           {SPEAKERS.map((s, i) => (
             <Reveal
               key={s.name}
-              delay={i * 0.08}
-              className="w-[230px] shrink-0 snap-start sm:w-[250px]"
+              delay={i * 0.06}
+              className="w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-1rem)] lg:w-[250px]"
             >
               <article className="group h-full overflow-hidden rounded-4xl border border-paper-tint bg-white shadow-[0_18px_50px_-24px_rgba(4,60,134,0.25)] transition-transform duration-300 hover:-translate-y-2">
                 <SpeakerPhoto speaker={s} />
-                <div className="px-5 py-5 text-center">
+                <div className="px-4 py-4 text-center sm:px-5 sm:py-5">
                   <h3 className="font-display text-lg font-bold leading-tight text-ink">
                     {s.name}
                   </h3>
