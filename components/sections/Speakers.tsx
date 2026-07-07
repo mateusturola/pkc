@@ -17,24 +17,20 @@ function initials(name: string) {
 
 function SpeakerPhoto({
   speaker,
-  tint,
+  pedestal,
 }: {
   speaker: Speaker;
-  tint: string;
+  pedestal: string;
 }) {
   const [errored, setErrored] = useState(false);
   const showPhoto = speaker.photo && !errored;
 
   return (
-    <div className={`relative aspect-[4/5] w-full overflow-hidden ${tint}`}>
-      {/* halo atrás da pessoa */}
+    <div className="relative aspect-[4/5] w-full overflow-hidden bg-white">
+      {/* Pedestal de cor na base — a pessoa "sai" dele por cima */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-2/3 opacity-70"
-        style={{
-          background:
-            "radial-gradient(60% 70% at 50% 12%, rgba(255,255,255,0.75), transparent 70%)",
-        }}
+        className={`pointer-events-none absolute inset-x-3 bottom-0 top-[42%] rounded-t-[2.2rem] bg-gradient-to-t ${pedestal}`}
       />
       {showPhoto ? (
         // eslint-disable-next-line @next/next/no-img-element
@@ -44,10 +40,10 @@ function SpeakerPhoto({
           loading="lazy"
           decoding="async"
           onError={() => setErrored(true)}
-          className="absolute inset-x-0 bottom-0 mx-auto h-full w-full object-contain object-bottom drop-shadow-[0_10px_20px_rgba(4,60,134,0.18)] transition-transform duration-500 group-hover:scale-[1.04]"
+          className="absolute inset-0 z-10 mx-auto h-full w-full object-contain object-bottom drop-shadow-[0_12px_22px_rgba(4,60,134,0.22)] transition-transform duration-500 group-hover:scale-[1.04]"
         />
       ) : (
-        <div className="flex h-full w-full items-center justify-center">
+        <div className="relative z-10 flex h-full w-full items-center justify-center">
           <span className="font-display text-5xl font-bold text-white/90">
             {initials(speaker.name)}
           </span>
@@ -81,10 +77,10 @@ export default function Speakers() {
         {/* Grid centralizado: linhas incompletas (ex.: 3+2) ficam no centro */}
         <div className="mt-14 flex flex-wrap justify-center gap-4 sm:gap-6">
           {SPEAKERS.map((s, i) => {
-            const tint =
+            const pedestal =
               i % 2 === 0
-                ? "bg-gradient-to-b from-blue/15 via-blue/5 to-transparent"
-                : "bg-gradient-to-b from-magenta/20 via-magenta/5 to-transparent";
+                ? "from-blue via-blue/85 to-blue/25"
+                : "from-magenta via-magenta/85 to-magenta/25";
             return (
               <Reveal
                 key={s.name}
@@ -92,7 +88,7 @@ export default function Speakers() {
                 className="w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-1rem)] lg:w-[250px]"
               >
                 <article className="group h-full overflow-hidden rounded-4xl border border-paper-tint bg-white shadow-[0_18px_50px_-24px_rgba(4,60,134,0.25)] transition-transform duration-300 hover:-translate-y-2">
-                  <SpeakerPhoto speaker={s} tint={tint} />
+                  <SpeakerPhoto speaker={s} pedestal={pedestal} />
                   <div className="px-4 py-4 text-center sm:px-5 sm:py-5">
                     <h3 className="font-display text-lg font-bold leading-tight text-ink">
                       {s.name}
