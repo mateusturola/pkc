@@ -109,31 +109,31 @@ export const SPEAKERS: Speaker[] = [
     name: "Pr. Aaron Helland",
     role: "Líder Nacional · PAZ Kids",
     accent: "purple",
-    photo: "/speakers/aaron-helland.jpg",
+    photo: "/speakers/aaron-helland.webp",
   },
   {
     name: "Pra. Esther Helland",
     role: "Escritora · Líder Nacional PAZ Kids",
     accent: "coral",
-    photo: "/speakers/esther-helland.jpg",
+    photo: "/speakers/esther-helland.webp",
   },
   {
     name: "Pr. Abe Huber",
     role: "Escritor · Pr. Sênior Paz São Paulo",
     accent: "sky",
-    photo: "/speakers/abe-huber.jpg",
+    photo: "/speakers/abe-huber.webp",
   },
   {
     name: "Pra. Rebecca Hrubik",
     role: "Líder · PAZ International",
     accent: "sun",
-    photo: "/speakers/rebecca-hrubik.jpg",
+    photo: "/speakers/rebecca-hrubik.webp",
   },
   {
     name: "Pra. Wilzy Adorno",
     role: "Pastora · Atitude Kids",
     accent: "purple",
-    photo: "/speakers/wilzy-adorno.jpg",
+    photo: "/speakers/wilzy-adorno.webp",
   },
 ];
 

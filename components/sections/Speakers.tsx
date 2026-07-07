@@ -15,12 +15,27 @@ function initials(name: string) {
     .toUpperCase();
 }
 
-function SpeakerPhoto({ speaker }: { speaker: Speaker }) {
+function SpeakerPhoto({
+  speaker,
+  tint,
+}: {
+  speaker: Speaker;
+  tint: string;
+}) {
   const [errored, setErrored] = useState(false);
   const showPhoto = speaker.photo && !errored;
 
   return (
-    <div className="aspect-[4/5] w-full overflow-hidden bg-paper-soft">
+    <div className={`relative aspect-[4/5] w-full overflow-hidden ${tint}`}>
+      {/* halo atrás da pessoa */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-2/3 opacity-70"
+        style={{
+          background:
+            "radial-gradient(60% 70% at 50% 12%, rgba(255,255,255,0.75), transparent 70%)",
+        }}
+      />
       {showPhoto ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
@@ -29,11 +44,11 @@ function SpeakerPhoto({ speaker }: { speaker: Speaker }) {
           loading="lazy"
           decoding="async"
           onError={() => setErrored(true)}
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="absolute inset-x-0 bottom-0 mx-auto h-full w-full object-contain object-bottom drop-shadow-[0_10px_20px_rgba(4,60,134,0.18)] transition-transform duration-500 group-hover:scale-[1.04]"
         />
       ) : (
-        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-blue to-magenta">
-          <span className="font-display text-5xl font-bold text-white">
+        <div className="flex h-full w-full items-center justify-center">
+          <span className="font-display text-5xl font-bold text-white/90">
             {initials(speaker.name)}
           </span>
         </div>
@@ -65,29 +80,35 @@ export default function Speakers() {
 
         {/* Grid centralizado: linhas incompletas (ex.: 3+2) ficam no centro */}
         <div className="mt-14 flex flex-wrap justify-center gap-4 sm:gap-6">
-          {SPEAKERS.map((s, i) => (
-            <Reveal
-              key={s.name}
-              delay={i * 0.06}
-              className="w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-1rem)] lg:w-[250px]"
-            >
-              <article className="group h-full overflow-hidden rounded-4xl border border-paper-tint bg-white shadow-[0_18px_50px_-24px_rgba(4,60,134,0.25)] transition-transform duration-300 hover:-translate-y-2">
-                <SpeakerPhoto speaker={s} />
-                <div className="px-4 py-4 text-center sm:px-5 sm:py-5">
-                  <h3 className="font-display text-lg font-bold leading-tight text-ink">
-                    {s.name}
-                  </h3>
-                  <p
-                    className={`mt-1 font-body text-xs font-bold uppercase tracking-[0.2em] ${
-                      i % 2 === 0 ? "text-blue" : "text-magenta"
-                    }`}
-                  >
-                    {s.role}
-                  </p>
-                </div>
-              </article>
-            </Reveal>
-          ))}
+          {SPEAKERS.map((s, i) => {
+            const tint =
+              i % 2 === 0
+                ? "bg-gradient-to-b from-blue/15 via-blue/5 to-transparent"
+                : "bg-gradient-to-b from-magenta/20 via-magenta/5 to-transparent";
+            return (
+              <Reveal
+                key={s.name}
+                delay={i * 0.06}
+                className="w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-1rem)] lg:w-[250px]"
+              >
+                <article className="group h-full overflow-hidden rounded-4xl border border-paper-tint bg-white shadow-[0_18px_50px_-24px_rgba(4,60,134,0.25)] transition-transform duration-300 hover:-translate-y-2">
+                  <SpeakerPhoto speaker={s} tint={tint} />
+                  <div className="px-4 py-4 text-center sm:px-5 sm:py-5">
+                    <h3 className="font-display text-lg font-bold leading-tight text-ink">
+                      {s.name}
+                    </h3>
+                    <p
+                      className={`mt-1 font-body text-xs font-bold uppercase tracking-[0.16em] ${
+                        i % 2 === 0 ? "text-blue" : "text-magenta"
+                      }`}
+                    >
+                      {s.role}
+                    </p>
+                  </div>
+                </article>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
