@@ -30,8 +30,63 @@ export default function Caravans() {
           </Reveal>
         </div>
 
+        {/* Mobile: cards empilhados (a tabela não cabe em tela estreita) */}
         <Reveal delay={0.15}>
-          <div className="mt-12 overflow-x-auto">
+          <div className="mt-10 space-y-4 md:hidden">
+            {CARAVAN_SIZES.map((size) => {
+              const best = size === BEST_VALUE;
+              const perks = CARAVAN_FEATURES.filter((f) =>
+                f.sizes.includes(size)
+              );
+              return (
+                <div
+                  key={size}
+                  className={`rounded-3xl border bg-white p-6 shadow-[0_18px_50px_-30px_rgba(4,60,134,0.30)] ${
+                    best
+                      ? "border-magenta/40 ring-2 ring-magenta/20"
+                      : "border-paper-tint"
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="font-display text-2xl font-bold leading-none text-ink">
+                      {size}{" "}
+                      <span className="font-body text-sm font-bold uppercase tracking-wide text-ink-mute">
+                        pessoas
+                      </span>
+                    </span>
+                    {best && (
+                      <span className="rounded-full bg-magenta px-3 py-1 font-body text-[10px] font-bold uppercase tracking-[0.14em] text-white">
+                        Mais vantajosa
+                      </span>
+                    )}
+                  </div>
+                  <ul className="mt-4 space-y-3">
+                    {perks.map((f) => (
+                      <li key={f.label} className="flex items-center gap-3">
+                        <span
+                          className={`grid h-7 w-7 shrink-0 place-items-center rounded-full ${
+                            best
+                              ? "bg-magenta/15 text-magenta"
+                              : "bg-blue/10 text-blue"
+                          }`}
+                        >
+                          <Icon name="check" className="h-4 w-4" />
+                        </span>
+                        <span className="font-body text-sm font-semibold text-ink-soft">
+                          {f.label}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
+        </Reveal>
+
+        {/* Desktop: tabela comparativa */}
+        <Reveal delay={0.15}>
+          <div className="mt-12 hidden overflow-x-auto md:block">
             <div className="w-fit min-w-full overflow-hidden rounded-4xl border border-paper-tint bg-white shadow-[0_24px_60px_-30px_rgba(4,60,134,0.30)]">
               {/* Cabeçalho: tamanhos de caravana */}
               <div className="grid grid-cols-[minmax(max-content,2fr)_repeat(3,minmax(90px,1fr))]">
